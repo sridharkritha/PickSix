@@ -1,0 +1,38 @@
+<html>
+<body>
+
+<TABLE BORDER="1">
+  <TR>
+    <TD>Your name</TD>
+    <TD>
+      <INPUT TYPE="TEXT" NAME="name" SIZE="20">
+    </TD>
+	<TD>
+      <input type="range" min="0" max="100" value="0" step="5" onchange='showValue(this.value, "slider1")' />
+      <span id="slider1">0</span>
+    </TD>
+  </TR>
+  <TR>
+    <TD>Your E-mail address</TD>
+    <TD><INPUT TYPE="TEXT" NAME="email" SIZE="25"></TD>
+	<TD>
+	<input type="range" min="0" max="100" value="0" step="5" onchange='showValue(this.value, "slider2")'  />
+      <span id="slider2">0</span>     
+    </TD>
+  </TR>
+</TABLE>
+
+
+
+
+
+
+<script type="text/javascript">
+function showValue(newValue, slide)
+{ 
+	document.getElementById(slide).innerHTML=newValue;
+}
+
+</script>
+</body>
+</html>
