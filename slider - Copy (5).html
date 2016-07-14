@@ -1,0 +1,128 @@
+<html>
+<body>
+
+<!--
+<TABLE BORDER="1">
+  <TR>
+    <TD>Your name</TD>
+    <TD>
+      <INPUT TYPE="TEXT" NAME="horseOne" SIZE="20">
+    </TD>
+	<TD>
+      <input type="range" min="0" max="100" value="0" step="5" onchange='showValue(this.value, "slider1")' />
+      <span id="slider1">0</span>
+    </TD>
+  </TR>
+  <TR>
+    <TD>Your E-mail address</TD>
+    <TD><INPUT TYPE="TEXT" NAME="email" SIZE="25"></TD>
+	<TD>
+	<input type="range" min="0" max="100" value="0" step="5" onchange='showValue(this.value, "slider2")'  />
+      <span id="slider2">0</span>     
+    </TD>
+  </TR>
+</TABLE>
+
+
+
+for (var i = 1; i < 31; i++) {
+    if (i % 3 == 1 && i != 1) {
+        mytable += "</tr><tr>";
+    }
+    mytable += "<td>[" + i + "]</td>";
+}
+
+mytable += "</tr></tbody></table>";
+
+document.write(mytable);
+
+
+-->
+
+
+
+
+<script type="text/javascript">
+function showValue(newValue, slide)
+{ 
+	document.getElementById(slide).innerHTML=newValue;  
+	//document.getElementById(" slider0 ").innerHTML=newValue;
+}
+
+
+/**
+ * Shuffles array in place.
+ * @param {Array} a items The array containing the items.
+ */
+function shuffle(a) {
+    var j, x, i;
+    for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+    }
+}
+
+function showLuckySix(value)
+{	
+    var pot = [];
+	var temp = "" ;
+	var start = 0;
+	for (var row = 0; row < 3; ++row) 
+	{	 
+	   var sliderID = ' slider' + row + ' '; // Note: we have forward and backward space
+	   var horseID = 'horse' + row;
+	   //temp += document.getElementById(horseID).value;
+	   //temp += document.getElementById(sliderID).innerHTML; // not value
+	   var horseNo = parseInt(document.getElementById(horseID).value);
+	   var freq = parseInt(document.getElementById(sliderID).innerHTML);
+	   
+        for (var idx = start; idx < start+freq; ++idx) 
+		{
+		   pot[idx] = horseNo;
+		}
+        start += freq;
+      	   
+	}
+	
+	shuffle(pot);
+   
+	for (var idx = 0; idx < start; ++idx) 
+	{
+		   temp += pot[idx];
+	}
+	document.getElementById("luckySix").innerHTML=temp;	
+}
+
+
+
+var mytable = "<table border='1' cellpadding=\"0\" cellspacing=\"0\"><tbody><tr>";
+
+for (var row = 0; row < 3; ++row) 
+{
+     var sliderID = "slider" + row;
+	 var horseID = "horse" + row;
+     // mytable += '<td><INPUT TYPE="TEXT" NAME="horseNo" SIZE="3"></td>';
+	 mytable += "<td><INPUT TYPE='TEXT' value='0' id='" + horseID + "' SIZE='3'></td>";
+	
+	// mytable += "<td><input type=\"range\" min=\"0\" max=\"100\" value=\"0\" step=\"5\" onchange=\'showValue(this.value, \"slider1\")\' /> <span id=\"slider1\">0</span> </td>";
+	 /*
+	 Single Quote or Double Quote Usage:
+	 " He's good "
+     ' He\'s good '
+	 " He's \"genius\""
+	 */
+	 mytable += "<td><input type='range' min='0' max='100' value='0' step='5' onchange='showValue(this.value, \" "+sliderID+" \")' /> <span id=' "+sliderID+" '>0</span> </td>";	
+	 mytable += "</tr><tr>";
+}
+mytable += "</tr></tbody></table>";
+document.write(mytable);
+
+
+</script>
+
+<button type="button" onclick="showLuckySix('Hello world!')">Pick Six</button>
+<span id="luckySix">0</span>     
+</body>
+</html>
